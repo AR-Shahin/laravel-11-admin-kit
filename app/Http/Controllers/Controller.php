@@ -11,7 +11,9 @@ abstract class Controller
 
     function __construct()
     {
-        $this->admin_permissions = auth("admin")->user()->getAllPermissions()->pluck("name")->toArray();
+        if(auth("admin")->user()){
+            $this->admin_permissions = auth("admin")->user()->getAllPermissions()->pluck("name")->toArray();
+        }
     }
 
 }
