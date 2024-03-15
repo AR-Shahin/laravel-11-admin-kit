@@ -14,4 +14,12 @@ abstract class Controller
         $this->admin_permissions = auth("admin")->user()->getAllPermissions()->pluck("name")->toArray();
     }
 
+    function authorize(string $permission) {
+        if(auth("admin")->user()){
+            if(!in_array($permission,$this->admin_permissions)){
+                abort(403);
+            }
+        }
+    }
+
 }
