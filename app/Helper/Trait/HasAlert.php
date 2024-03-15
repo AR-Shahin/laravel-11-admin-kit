@@ -2,7 +2,7 @@
 
 namespace App\Helper\Trait;
 
-trait Alert
+trait HasAlert
 {
     public function successAlert($message){
         session()->flash("success",$message);

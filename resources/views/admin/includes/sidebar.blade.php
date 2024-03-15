@@ -57,6 +57,10 @@
               </li>
             </ul>
           </li>
+          {{-- @php
+              dd($permissions);
+          @endphp --}}
+          @if (in_array("simple-link",$permissions))
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -66,6 +70,18 @@
               </p>
             </a>
           </li>
+          @endif
+       
+          @if (in_array("role-create",$permissions))
+          <li class="nav-item">
+            <a href="{{ route('admin.dashboard') }}" class="nav-link">
+              <i class="nav-icon fas fa-home"></i>
+              <p>
+                Home
+              </p>
+            </a>
+          </li>
+          @endif
           <li class="nav-item">
             <form action="{{ route("admin.logout") }}" method="POST">
                 @csrf
