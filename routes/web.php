@@ -4,8 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Auth\Foo;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Models\Admin;
+
 Route::get('/', function () {
-    return redirect()->route("ars");
+    // $admin =  Admin::first();
+    // return $admin->getAllPermissions()->pluck("name");
+    // return redirect()->route("ars");
 });
 
 Route::get('/dashboard', function () {
