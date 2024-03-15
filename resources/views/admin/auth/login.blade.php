@@ -1,5 +1,5 @@
 @extends("admin.layouts.app")
-
+@section("title", "Login")
 @section("app_content")
 <div class="login-page">
     <div class="login-box">
