@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Middleware\CacheClearMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Auth\AuthenticationException;
@@ -21,8 +21,8 @@ return Application::configure(basePath: dirname(__DIR__))
             'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
             'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
             'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
-        ])->web([
-            RedirectIfAuthenticated::class => RedirectIfAuthenticatedCustom::class
+        ])->append([
+            CacheClearMiddleware::class
         ]);
 
     })

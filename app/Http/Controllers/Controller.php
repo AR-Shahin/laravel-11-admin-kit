@@ -16,4 +16,12 @@ abstract class Controller
         }
     }
 
+    function authorize(string $permission) {
+        if(auth("admin")->user()){
+            if(!in_array($permission,$this->admin_permissions)){
+                abort(403);
+            }
+        }
+    }
+
 }
