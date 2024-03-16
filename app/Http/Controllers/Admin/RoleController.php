@@ -54,7 +54,7 @@ class RoleController extends Controller
 
     function assignPermission(Role $role) {
         $all_permissions = Permission::whereGuardName("admin")->orderBy("name")->get();
-        $alreadyGiven = auth("admin")->user()->getAllPermissions()->pluck("id")->toArray();
+        $alreadyGiven = $role->permissions()->pluck("id")->toArray();
         return view("admin.role.assign-permission",compact("all_permissions","role","alreadyGiven"));
     }
 
@@ -63,6 +63,7 @@ class RoleController extends Controller
             'permissions' => 'array',
             'permissions.*' => 'exists:permissions,id',
         ]);
+
         $permissions = Permission::whereIn("id",$request->permissions)->get();
         $role->syncPermissions($permissions);
         $this->successAlert("Assigned Permission to this Role.");
