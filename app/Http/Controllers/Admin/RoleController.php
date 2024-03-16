@@ -64,7 +64,8 @@ class RoleController extends Controller
             'permissions.*' => 'exists:permissions,id',
         ]);
 
-        $permissions = Permission::whereIn("id",$request->permissions)->get();
+
+        $permissions = Permission::whereIn("id",is_null($request->permissions) ? [] : $request->permissions)->get();
         $role->syncPermissions($permissions);
         $this->successAlert("Assigned Permission to this Role.");
         return redirect()->back();
