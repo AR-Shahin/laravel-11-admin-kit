@@ -59,7 +59,7 @@ class AdminController extends Controller
         }
         $admin->fill([
             "name" => $request->name,
-            "email" => $request->name,
+            "email" => $request->email,
             "password" => bcrypt($request->password)
         ]);
 
@@ -72,15 +72,9 @@ class AdminController extends Controller
 
     function delete(Admin $admin) {
         $this->authorize("permission-delete");
-        $message = "Already Assigned in a Role!";
-        if(!$admin->roles()->exists()){
-            $admin->delete();
-            $message = "Permission Deleted!";
-            $this->successAlert($message);
-        }else{
-            $this->warningAlert($message);
-        }
-
+        $message = "Admin Deleted!";
+        $admin->delete();
+        $this->successAlert($message);
         return redirect()->back();
     }
 }

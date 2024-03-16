@@ -107,7 +107,7 @@
             </ul>
           </li>
           @endif
-
+          @if (in_array("admin-create",$permissions))
           <li class="nav-item menu--open">
             <a href="#" class="nav-link ">
               <i class="nav-icon fas fa-users"></i>
@@ -126,6 +126,7 @@
 
             </ul>
           </li>
+          @endif
           <li class="nav-item">
             <form action="{{ route("admin.logout") }}" method="POST">
                 @csrf
