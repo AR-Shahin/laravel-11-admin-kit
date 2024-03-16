@@ -11,4 +11,8 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    build: {
+        outDir: 'public/build', // Specify the output directory for the built files
+        manifest: true, // Enable manifest generation
+      },
 });
