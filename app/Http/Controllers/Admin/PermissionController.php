@@ -9,12 +9,12 @@ use Yajra\DataTables\Facades\DataTables;
 class PermissionController extends Controller
 {
     function index()  {
-        $this->authorize("role-view");
+        $this->authorize("permission-view");
        // $permissions = Permission::whereGuardName("admin")->get();
         return view("admin.permission.index");
     }
     function data_table()  {
-        $this->authorize("role-view");
+        $this->authorize("permission-view");
         $permissions = Permission::whereGuardName("admin");
 
         return DataTables::of($permissions)
@@ -28,7 +28,7 @@ class PermissionController extends Controller
     }
 
     function store(Request $request)  {
-        $this->authorize("role-create");
+        $this->authorize("permission-create");
         $request->validate([
             "name" => ["required","string","unique:permissions,name"]
         ]);
