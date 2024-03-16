@@ -26,7 +26,7 @@
   <div class="content-wrapper">
 
     <!-- Main content -->
-    <div class="content pt-2">
+    <div class="content pt-3">
       <div class="container-fluid">
         @yield("master_content")
         <!-- /.row -->
