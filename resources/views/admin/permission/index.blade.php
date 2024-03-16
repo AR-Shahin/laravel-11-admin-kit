@@ -45,17 +45,19 @@
                 <hr>
                 <form action="{{ route('admin.permissions.store') }}" method="POST">
                     @csrf
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for=""><b>Name</b></label>
                         <input type="text" class="form-control" name="name" value="{{ old('name') }}">
                         @error("name")
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
-                    </div>
+                    </div> --}}
+
+                    <x-form.input label="Name" type="text" name="name" placeholder="Enter permission name" id="name"/>
                     <button class="btn btn-sm btn-success btn-block">Submit</button>
                 </form>
             </div>
-            @endif 
+            @endif
         </div>
     </div>
 </div>
