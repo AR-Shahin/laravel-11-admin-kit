@@ -15,8 +15,8 @@
             <div class="col-md-8">
                 <h3>Permissions</h3>
                 <hr>
-                <table class="table table-sm table-bordered text-center data-table">
-                    <thead>
+                <table class="table table-sm table-bordered data-table">
+                    <thead class="text-center">
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
@@ -39,21 +39,19 @@
                     @endforeach --}}
                 </table>
             </div>
+            @if (in_array("permission-create",$permissions))
             <div class="col-md-4">
                 <h3>Create permission</h3>
                 <hr>
                 <form action="{{ route('admin.permissions.store') }}" method="POST">
                     @csrf
-                    <div class="form-group">
-                        <label for=""><b>Name</b></label>
-                        <input type="text" class="form-control" name="name" value="{{ old('name') }}">
-                        @error("name")
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
+
+
+                    <x-form.input label="Name" type="text" name="name" placeholder="Enter permission name" id="name"/>
                     <button class="btn btn-sm btn-success btn-block">Submit</button>
                 </form>
             </div>
+            @endif
         </div>
     </div>
 </div>

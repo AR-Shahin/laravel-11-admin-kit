@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Helper\Trait\HasAlert;
+use App\Helper\Trait\HasLog;
+use App\Helper\Trait\HTMLTrait;
 
 abstract class Controller
 {
-    use HasAlert;
+    use HasAlert,HasLog,HTMLTrait;
     public $admin_permissions;
 
     function __construct()

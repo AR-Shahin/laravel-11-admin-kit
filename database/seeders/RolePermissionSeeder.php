@@ -16,12 +16,19 @@ class RolePermissionSeeder extends Seeder
     public function run(): void
     {
         $role = Role::first();
+        $view = Role::find(3);
         $permissions = Permission::all();
+        $permissionView = Permission::where("name","like","%-view")->get();
         foreach($permissions as $permission){
             $role->givePermissionTo($permission);
         }
+        foreach($permissionView as $permission){
+            $view->givePermissionTo($permission);
+        }
 
         $admin = Admin::first();
+        $viewer = Admin::find(2);
+        $viewer->assignRole($view);
         $admin->assignRole($role);
     }
 }

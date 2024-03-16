@@ -4,15 +4,14 @@
 
 @section("master_content")
 
-
 <div class="card">
     <div class="card-body">
         <div class="row">
             <div class="col-md-8">
                 <h3>Roles</h3>
                 <hr>
-                <table class="table table-sm table-bordered text-center">
-                    <tr>
+                <table class="table table-sm table-bordered">
+                    <tr class="text-center">
                         <th>SL</th>
                         <th>Name</th>
                         <th>Actions</th>
@@ -24,29 +23,37 @@
                             <td>{{ $role->name }}</td>
                             <td>
                                 <a href="" class="btn btn-sm btn-success mx-1"><i class="fa fa-eye"></i></a>
-                                <a href="" class="btn btn-sm btn-info mx-1"><i class="fa fa-edit"></i></a>
-                                <a href="" class="btn btn-sm btn-danger mx-1"><i class="fa fa-trash"></i></a>
-                                <a href="" class="btn btn-sm btn-primary mx-1"><i class="fas fa-tasks"></i></a>
+                                <a href="{{ route('admin.roles.assign_permission',$role->id) }}" class="btn btn-sm btn-secondary mx-1"><i class="fa fa-bars"></i></a>
+                                @php
+                                 rowEditModal($role,route("admin.roles.store",$role->id))
+                                @endphp
+                                <form class="d-inline" action="{{ route('admin.roles.delete',$role->id) }}" method="post">
+                                   @csrf
+                                    <button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
                 </table>
             </div>
+            @if (in_array("role-create",$permissions))
             <div class="col-md-4">
                 <h3>Create Role</h3>
                 <hr>
                 <form action="{{ route('admin.roles.store') }}" method="POST">
                     @csrf
-                    <div class="form-group">
+                    <x-form.input label="Name" type="text" name="name" placeholder="Enter role name" id="name"/>
+                    {{-- <div class="form-group">
                         <label for=""><b>Name</b></label>
                         <input type="text" class="form-control" name="name" value="{{ old('name') }}">
                         @error("name")
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
-                    </div>
+                    </div> --}}
                     <button class="btn btn-sm btn-success btn-block">Submit</button>
                 </form>
             </div>
+            @endif
         </div>
     </div>
 </div>
