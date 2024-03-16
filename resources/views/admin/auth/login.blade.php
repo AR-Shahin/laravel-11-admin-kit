@@ -13,6 +13,9 @@
              @error("email")
              <span class="text-danger">{{ $message }}</span>
           @enderror
+          @if (session("status"))
+          <span class="text-success">{{ session("status") }}</span>
+      @endif
              <form action="{{ route("admin.authenticate") }}" method="post">
                 @csrf
                 <div class="input-group mb-3">
@@ -59,11 +62,11 @@
              </div> --}}
              <!-- /.social-auth-links -->
              <p class="mb-1">
-                <a href="forgot-password.html">I forgot my password</a>
+                <a href="{{ route("admin.password.request") }}">I forgot my password</a>
              </p>
-             <p class="mb-0">
+             {{-- <p class="mb-0">
                 <a href="register.html" class="text-center">Register a new membership</a>
-             </p>
+             </p> --}}
           </div>
           <!-- /.login-card-body -->
        </div>
