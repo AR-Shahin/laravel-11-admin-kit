@@ -45,4 +45,6 @@ class Admin extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+   
 }

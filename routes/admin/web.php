@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\{
+    AdminController,
     DashboardController,
     PermissionController,
     RoleController
@@ -26,5 +27,16 @@ Route::prefix("admin")->middleware("auth:admin")->name("admin.")->group(function
         Route::get("data_table","data_table")->name("data_table");
         Route::post("store/{permission?}","store")->name("store");
         Route::post("delete/{permission}","delete")->name("delete");
+    });
+
+
+
+      # Admin
+      Route::prefix('admins')->controller(AdminController::class)->name("admins.")->group(function () {
+        Route::get("","index")->name("index");
+        Route::get("/create","create")->name("create");
+        Route::get("data_table","data_table")->name("data_table");
+        Route::post("store/{admin?}","storeAndUpdate")->name("store_update");
+        Route::post("delete/{admin}","delete")->name("delete");
     });
 });

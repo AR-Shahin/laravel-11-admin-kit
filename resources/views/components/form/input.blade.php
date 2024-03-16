@@ -1,7 +1,7 @@
 @props(["label", "type", "name", "id" => null, "placeholder"])
 
 <div class="form-group">
-    <label for="{{ $id }}"><b>{{ $label }}</b></label>
+    <label for="{{ $id }}"><b>{{ $label }}</b> : </label>
     <input type="{{ $type }}" class="form-control
     @error($name)
         is-invalid
