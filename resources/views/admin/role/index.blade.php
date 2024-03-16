@@ -24,13 +24,13 @@
                             <td>
                                 <a href="" class="btn btn-sm btn-success mx-1"><i class="fa fa-eye"></i></a>
                                 <a href="{{ route('admin.roles.assign_permission',$role->id) }}" class="btn btn-sm btn-secondary mx-1"><i class="fa fa-bars"></i></a>
-                                @php
-                                 rowEditModal($role,route("admin.roles.store",$role->id))
-                                @endphp
-                                <form class="d-inline" action="{{ route('admin.roles.delete',$role->id) }}" method="post">
-                                   @csrf
-                                    <button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>
-                                </form>
+                                @if ($role->name != "Super Admin")
+                                    @php
+                                        rowEditModal($role,route("admin.roles.store",$role->id))
+                                    @endphp
+                                <x-form.submit-delete :route="route('admin.roles.delete',$role->id)"/>
+                              
+                                @endif
                             </td>
                         </tr>
                     @endforeach

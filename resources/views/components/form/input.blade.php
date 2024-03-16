@@ -1,4 +1,4 @@
-@props(["label", "type", "name", "id" => null, "placeholder"])
+@props(["label", "type", "name", "id" => null, "placeholder","value" => null])
 
 <div class="form-group">
     <label for="{{ $id }}"><b>{{ $label }}</b> : </label>
@@ -6,7 +6,7 @@
     @error($name)
         is-invalid
     @enderror
-    " name="{{ $name }}" value="{{ old($name) }}" id="{{ $id }}" placeholder="{{ $placeholder }}">
+    " name="{{ $name }}" value="{{ old($name) ?? $value }}" id="{{ $id }}" placeholder="{{ $placeholder }}">
     @error($name)
         <span class="text-danger">{{ $message }}</span>
     @enderror

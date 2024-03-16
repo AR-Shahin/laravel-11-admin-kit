@@ -35,8 +35,10 @@ Route::prefix("admin")->middleware("auth:admin")->name("admin.")->group(function
       Route::prefix('admins')->controller(AdminController::class)->name("admins.")->group(function () {
         Route::get("","index")->name("index");
         Route::get("/create","create")->name("create");
+        Route::get("/edit/{admin}","edit")->name("edit");
         Route::get("data_table","data_table")->name("data_table");
-        Route::post("store/{admin?}","storeAndUpdate")->name("store_update");
+        Route::post("store","store")->name("store");
+        Route::post("update/{admin?}","update")->name("update");
         Route::post("delete/{admin}","delete")->name("delete");
     });
 });

@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="d-flex justify-content-between">
-                    <div><h3>Admin Create</h3></div>
+                    <div><h3>Admin Edit</h3></div>
                     <div>
                         @if (in_array("admin-create",$permissions))
                         <a href="{{ route("admin.admins.index") }}" class="btn btn-sm btn-success"><i class="fa fa-angle-left"></i> Back</a>
@@ -21,28 +21,33 @@
                 </div>
                 <hr>
 
-                <form action="{{ route("admin.admins.store") }}" method="POST" >
+                <form action="{{ route("admin.admins.update",$admin->id) }}" method="POST" >
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
-                            <x-form.input label="Name" type="text" name="name" placeholder="Enter name" id="name"/>
+                            <x-form.input label="Name" type="text" name="name" placeholder="Enter name" id="name" :value="$admin->name"/>
                         </div>
                         <div class="col-md-6">
-                            <x-form.input label="Email" type="email" name="email" placeholder="Enter Email" id="email"/>
+                            <x-form.input label="Email" type="email" name="email" placeholder="Enter Email" id="email" :value="$admin->email"/>
                         </div>
-                        <div class="col-md-6">
+                        {{-- <div class="col-md-6">
                             <x-form.input label="Password" type="password" name="password" placeholder="Enter password" id="password"/>
                         </div>
                         <div class="col-md-6">
                             <x-form.input label="Re Password" type="password" name="password_confirmation" placeholder="Re password" id="re_password"/>
-                        </div>
+                        </div> --}}
+
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for=""><b>Role : </b></label>
                                 <select name="role_id" id="" class="form-control select2">
                                     <option value="">Select A Role</option>
                                     @foreach ($roles as $role)
-                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                    <option value="{{ $role->id }}"
+                                        @if($admin->roles[0]->id == $role->id)
+                                        selected
+                                        @endif
+                                        >{{ $role->name }}</option>
                                     @endforeach
                                 </select>
                             @error("role_id")
