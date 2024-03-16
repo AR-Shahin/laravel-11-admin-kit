@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\WebsiteInfo;
 use Illuminate\Support\Facades\View as FacadesView;
 use Illuminate\View\View;
 use Illuminate\Support\ServiceProvider;
@@ -26,5 +27,9 @@ class AppServiceProvider extends ServiceProvider
                 $view->with("permissions",auth("admin")->user()->getAllPermissions()->pluck("name")->toArray());
             }
         });
+        FacadesView::composer("*",function (View $view) {
+            $view->with("website",once(fn() => WebsiteInfo::first()));
+        });
+
     }
 }

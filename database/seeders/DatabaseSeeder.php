@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Admin;
 use App\Models\User;
+use App\Models\WebsiteInfo;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -33,7 +34,7 @@ class DatabaseSeeder extends Seeder
             "email" => "viewer@mail.com",
             "password" => bcrypt("password")
         ]);
-
+    WebsiteInfo::create([]);
         $this->call([
             RoleSeeder::class,
             PermissionSeeder::class,
