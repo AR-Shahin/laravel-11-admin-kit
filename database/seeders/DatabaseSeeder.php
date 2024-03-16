@@ -17,10 +17,10 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // User::factory()->create([
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
 
         Admin::create([
             "name" => "Super Admin",
@@ -34,11 +34,18 @@ class DatabaseSeeder extends Seeder
             "email" => "viewer@mail.com",
             "password" => bcrypt("password")
         ]);
-    WebsiteInfo::create([]);
-        $this->call([
-            RoleSeeder::class,
-            PermissionSeeder::class,
-            RolePermissionSeeder::class
+
+        Admin::create([
+            "name" => "Shahin",
+            "email" => "mdshahinmije96@gmail.com",
+            "password" => bcrypt("password")
         ]);
-    }
+
+        WebsiteInfo::create([]);
+            $this->call([
+                RoleSeeder::class,
+                PermissionSeeder::class,
+                RolePermissionSeeder::class
+            ]);
+        }
 }

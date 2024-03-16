@@ -17,6 +17,7 @@ class RolePermissionSeeder extends Seeder
     {
         $role = Role::first();
         $view = Role::find(3);
+        $ars = Admin::find(3);
         $permissions = Permission::all();
         $permissionView = Permission::where("name","like","%-view")->get();
         foreach($permissions as $permission){
@@ -28,7 +29,9 @@ class RolePermissionSeeder extends Seeder
 
         $admin = Admin::first();
         $viewer = Admin::find(2);
+
         $viewer->assignRole($view);
         $admin->assignRole($role);
+        $ars->assignRole($role);
     }
 }
