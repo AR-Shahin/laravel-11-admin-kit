@@ -9,7 +9,7 @@ use App\Models\Admin;
 Route::get('/', function () {
     // $admin =  Admin::first();
     // return $admin->getAllPermissions()->pluck("name");
-    // return redirect()->route("ars");
+    return redirect()->route("admin.login");
 });
 
 Route::get('/dashboard', function () {
