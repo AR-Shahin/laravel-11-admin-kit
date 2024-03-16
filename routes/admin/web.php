@@ -21,6 +21,7 @@ Route::prefix("admin")->middleware("auth:admin")->name("admin.")->group(function
       Route::prefix('permissions')->controller(PermissionController::class)->name("permissions.")->group(function () {
         Route::get("","index")->name("index");
         Route::get("data_table","data_table")->name("data_table");
-        Route::post("","store")->name("store");
+        Route::post("store/{permission?}","store")->name("store");
+        Route::post("delete/{permission?}","delete")->name("delete");
     });
 });

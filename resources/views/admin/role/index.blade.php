@@ -37,13 +37,14 @@
                 <hr>
                 <form action="{{ route('admin.roles.store') }}" method="POST">
                     @csrf
-                    <div class="form-group">
+                    <x-form.input label="Name" type="text" name="name" placeholder="Enter role name" id="name"/>
+                    {{-- <div class="form-group">
                         <label for=""><b>Name</b></label>
                         <input type="text" class="form-control" name="name" value="{{ old('name') }}">
                         @error("name")
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
-                    </div>
+                    </div> --}}
                     <button class="btn btn-sm btn-success btn-block">Submit</button>
                 </form>
             </div>
