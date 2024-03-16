@@ -39,6 +39,7 @@
                     @endforeach --}}
                 </table>
             </div>
+            @if (in_array("permission-create",$permissions))
             <div class="col-md-4">
                 <h3>Create permission</h3>
                 <hr>
@@ -54,6 +55,7 @@
                     <button class="btn btn-sm btn-success btn-block">Submit</button>
                 </form>
             </div>
+            @endif 
         </div>
     </div>
 </div>

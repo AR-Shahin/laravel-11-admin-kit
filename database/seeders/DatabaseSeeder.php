@@ -27,6 +27,13 @@ class DatabaseSeeder extends Seeder
             "password" => bcrypt("password")
         ]);
 
+
+        Admin::create([
+            "name" => "Viewer",
+            "email" => "viewer@mail.com",
+            "password" => bcrypt("password")
+        ]);
+
         $this->call([
             RoleSeeder::class,
             PermissionSeeder::class,

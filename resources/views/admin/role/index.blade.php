@@ -4,7 +4,6 @@
 
 @section("master_content")
 
-
 <div class="card">
     <div class="card-body">
         <div class="row">
@@ -32,6 +31,7 @@
                     @endforeach
                 </table>
             </div>
+            @if (in_array("role-create",$permissions))
             <div class="col-md-4">
                 <h3>Create Role</h3>
                 <hr>
@@ -47,6 +47,7 @@
                     <button class="btn btn-sm btn-success btn-block">Submit</button>
                 </form>
             </div>
+            @endif
         </div>
     </div>
 </div>

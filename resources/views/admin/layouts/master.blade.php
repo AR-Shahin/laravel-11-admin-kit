@@ -10,7 +10,7 @@
  @include("admin.includes.css")
 </head>
 @php
-    $permissions = auth("admin")->user()->getAllPermissions()->pluck("name")->toArray();
+    // $permissions = auth("admin")->user()->getAllPermissions()->pluck("name")->toArray();
 @endphp
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
