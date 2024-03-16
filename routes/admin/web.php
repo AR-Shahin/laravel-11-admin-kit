@@ -16,6 +16,8 @@ Route::prefix("admin")->middleware("auth:admin")->name("admin.")->group(function
         Route::get("","index")->name("index");
         Route::post("/store/{role?}","storeAndUpdate")->name("store");
         Route::post("delete/{role}","delete")->name("delete");
+        Route::get("assign-permissions/{role}","assignPermission")->name("assign_permission");
+        Route::post("assign--permissions/{role}","assignPermissionStore")->name("assign__permission");
     });
 
       # Permission

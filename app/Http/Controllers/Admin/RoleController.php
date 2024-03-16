@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
+use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
@@ -48,6 +49,23 @@ class RoleController extends Controller
             $this->warningAlert($message);
         }
 
+        return redirect()->back();
+    }
+
+    function assignPermission(Role $role) {
+        $all_permissions = Permission::whereGuardName("admin")->orderBy("name")->get();
+        $alreadyGiven = auth("admin")->user()->getAllPermissions()->pluck("id")->toArray();
+        return view("admin.role.assign-permission",compact("all_permissions","role","alreadyGiven"));
+    }
+
+    function assignPermissionStore(Request $request,Role $role)  {
+        $request->validate([
+            'permissions' => 'array',
+            'permissions.*' => 'exists:permissions,id',
+        ]);
+        $permissions = Permission::whereIn("id",$request->permissions)->get();
+        $role->syncPermissions($permissions);
+        $this->successAlert("Assigned Permission to this Role.");
         return redirect()->back();
     }
 

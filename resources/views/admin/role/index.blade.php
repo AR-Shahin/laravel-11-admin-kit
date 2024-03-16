@@ -23,7 +23,7 @@
                             <td>{{ $role->name }}</td>
                             <td>
                                 <a href="" class="btn btn-sm btn-success mx-1"><i class="fa fa-eye"></i></a>
-                                <a href="" class="btn btn-sm btn-secondary mx-1"><i class="fa fa-bars"></i></a>
+                                <a href="{{ route('admin.roles.assign_permission',$role->id) }}" class="btn btn-sm btn-secondary mx-1"><i class="fa fa-bars"></i></a>
                                 @php
                                  rowEditModal($role,route("admin.roles.store",$role->id))
                                 @endphp
