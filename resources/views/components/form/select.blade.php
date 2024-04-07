@@ -1,14 +1,26 @@
-@props(["label", "type", "name", "id" => null, "placeholder","value" => null])
+@props(["label","name", "id" => null,"items","key" => null, "is_multiple" => false,"multi_placeholder" => ''])
 
 <div class="form-group">
-    <label for=""><b>{{ $label }} : </b></label>
-    <select name="role_id" id="" class="form-control select2">
-        <option value="">Select A Role</option>
-        @foreach ($roles as $role)
-        <option value="{{ $role->id }}">{{ $role->name }}</option>
+    <label for="{{ $id }}"><b>{{ $label }} : </b></label>
+
+    <select name="{{ $name }}" id="{{ $id }}" class="form-control select2   @error($name)
+    is-invalid
+@enderror"
+    @if ($is_multiple)
+    multiple="multiple" data-placeholder="{{ $multi_placeholder }}"
+    @endif
+    >
+        <option value="">Select An Item</option>
+        @foreach ($items as $item)
+        <option value="{{ $item->id }}"
+            @if(old($name) == $item->id )
+            selected
+            @endif
+            >{{ $item->name ?? $item->$key }}</option>
         @endforeach
     </select>
-@error("role_id")
+
+@error($name)
     <span class="text-danger">{{ $message }}</span>
 @enderror
 </div>
