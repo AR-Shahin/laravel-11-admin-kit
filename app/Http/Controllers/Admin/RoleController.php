@@ -51,13 +51,38 @@ class RoleController extends Controller
 
         return redirect()->back();
     }
-
     function assignPermission(Role $role) {
-        $all_permissions = Permission::whereGuardName("admin")->orderBy("name")->get();
+        $permissions = Permission::whereGuardName("admin")->orderBy("name")->get();
         $alreadyGiven = $role->permissions()->pluck("id")->toArray();
-        return view("admin.role.assign-permission",compact("all_permissions","role","alreadyGiven"));
-    }
 
+        $permissionArrays = [
+            'view' => [],
+            'create' => [],
+            'edit' => [],
+            'delete' => [],
+            'other' => []
+        ];
+
+        foreach ($permissions as $item) {
+            $permissionType = 'other';
+            if (strpos($item->name, 'view') !== false) {
+                $permissionType = 'view';
+            } elseif (strpos($item->name, 'create') !== false) {
+                $permissionType = 'create';
+            } elseif (strpos($item->name, 'edit') !== false) {
+                $permissionType = 'edit';
+            } elseif (strpos($item->name, 'delete') !== false) {
+                $permissionType = 'delete';
+            }
+
+            $permissionArrays[$permissionType][] = [
+                'id' => $item->id,
+                'name' => ucwords(str_replace("-", " ", $item->name))
+            ];
+        }
+
+        return view("admin.role.assign-permission",compact("permissionArrays","role","alreadyGiven"));
+    }
     function assignPermissionStore(Request $request,Role $role)  {
         $request->validate([
             'permissions' => 'array',
