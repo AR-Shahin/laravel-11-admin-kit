@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Helper\Trait\HasAlert;
 use App\Helper\Trait\HasLog;
+use App\Helper\Trait\HasAlert;
 use App\Helper\Trait\HTMLTrait;
+use Yajra\DataTables\DataTables;
 
 abstract class Controller
 {
@@ -24,6 +25,14 @@ abstract class Controller
                 abort(403);
             }
         }
+    }
+
+
+    public function table($query)
+    {
+        return DataTables::of($query)
+            ->addIndexColumn();
+
     }
 
 }
