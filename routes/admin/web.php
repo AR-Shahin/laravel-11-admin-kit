@@ -1,17 +1,20 @@
 <?php
 
+use App\Helper\Trait\Helper;
 use App\Http\Controllers\Admin\{
     AdminController,
+    BackupController,
     DashboardController,
     PermissionController,
     RoleController
 };
-
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix("admin")->middleware("auth:admin")->name("admin.")->group(function(){
     Route::get("/dashboard",[DashboardController::class,"index"])->name("dashboard");
-
+    Route::post("/backup",fn() => database_backup_with_file(new Helper))->name("backup");
+    Route::post("/backup-db",fn() => database_backup(new Helper))->name("backup_db");
     # Role
     Route::prefix('roles')->controller(RoleController::class)->name("roles.")->group(function () {
         Route::get("","index")->name("index");
@@ -41,4 +44,16 @@ Route::prefix("admin")->middleware("auth:admin")->name("admin.")->group(function
         Route::post("update/{admin?}","update")->name("update");
         Route::post("delete/{admin}","delete")->name("delete");
     });
+
+
+    Route::get("shahin",[BackupController::class,"backupAndDownload"]);
+    Route::get('/download', function (Request $request) {
+        $filePath = storage_path('app/' . $request->query('file'));
+
+        if (file_exists($filePath)) {
+            return response()->download($filePath);
+        }
+
+        abort(404, 'File not found.');
+    })->name('admin.download');
 });
