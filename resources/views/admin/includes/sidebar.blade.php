@@ -58,7 +58,15 @@
           @endif
 
 
-
+          <li class="nav-item">
+            <a href="{{ url('log-viewer') }}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Log View
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
           @if (in_array("role-create",$permissions))
           <li class="nav-item menu--open">
             <a href="#" class="nav-link ">
