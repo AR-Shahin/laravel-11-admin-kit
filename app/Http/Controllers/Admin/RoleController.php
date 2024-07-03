@@ -10,6 +10,7 @@ use Spatie\Permission\Models\Permission;
 class RoleController extends Controller
 {
     function index()  {
+
         $this->authorize("role-view");
         $roles = Role::whereGuardName("admin")->get();
         return view("admin.role.index",compact('roles'));

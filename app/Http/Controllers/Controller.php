@@ -10,12 +10,12 @@ use Yajra\DataTables\DataTables;
 abstract class Controller
 {
     use HasAlert,HasLog,HTMLTrait;
-    public $admin_permissions;
+    public $admin_permissions = [];
 
     function __construct()
     {
         if(auth("admin")->user()){
-            $this->admin_permissions = auth("admin")->user()->getAllPermissions()->pluck("name")->toArray();
+            $this->admin_permissions = auth("admin")->user()->getAllPermissions()->pluck("name")->toArray() ;
         }
     }
 
@@ -32,7 +32,6 @@ abstract class Controller
     {
         return DataTables::of($query)
             ->addIndexColumn();
-
     }
 
 }

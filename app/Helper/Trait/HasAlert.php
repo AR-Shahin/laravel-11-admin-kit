@@ -13,4 +13,15 @@ trait HasAlert
     public function warningAlert($message){
         session()->flash("warning",$message);
     }
+
+    public function createdAlert(){
+        session()->flash("success","Data Successfully Created!");
+    }
+
+    public function deletedAlert(){
+        session()->flash("success","Data Successfully Deleted!");
+    }
+    public function updatedAlert(){
+        session()->flash("success","Data Successfully Updated!");
+    }
 }
