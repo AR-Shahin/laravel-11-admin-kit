@@ -28,17 +28,4 @@ class BaseCRUDRequest extends FormRequest
             "name" => ["required"]
         ];
     }
-
-    public function setTableName(string $table){
-        $this->table = $table;
-    }
-    public function setCustomRules(array $rules)
-    {
-        $this->customRules = $rules;
-    }
-
-    public function mergedRules(): array
-    {
-        return array_merge($this->rules(), $this->customRules);
-    }
 }

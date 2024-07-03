@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Category;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BaseCRUDRequest;
-use App\Models\Category;
 use App\Repository\BaseCRUDRepository;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
     private $repository;
+    private $table = "categories";
 
     function __construct()
     {
@@ -26,7 +28,8 @@ class CategoryController extends Controller
                 ->addIndexColumn()
                 ->addColumn("actions",function($row){
                     $deleteRoute = route('admin.categories.destroy', $row["id"]);
-                    $html = $this->generateDeleteButton($row,$deleteRoute,"admin-delete","DELETE");
+                    $editRoute = route('admin.categories.update', $row["id"]);
+                    $html = $this->generateEditButton($row,$editRoute) .  $this->generateDeleteButton($row,$deleteRoute,"admin-delete","DELETE");
                     return $html;
                 })
 
@@ -47,23 +50,32 @@ class CategoryController extends Controller
     }
 
     function store(Request $request) {
+        $request->validate([
+            "name" => ["required","unique:$this->table,name"]
+        ]);
+        if(
+            $this->repository->store([
+                "name" => $request->name,
+                "slug" => $request->name,
+            ])
+        ){
+            $this->createdAlert();
+            return back();
+        }
+    }
 
-        $customRules = [
-            'name' => ["required","unique:categories"],
-            // Add other dynamic rules as needed
-        ];
-
-        // Create an instance of BaseCRUDRequest
-        $validatedRequest = app(BaseCRUDRequest::class);
-
-       $validatedRequest->setCustomRules($customRules);
-
-        // Validate the request
-      return  $validated = $validatedRequest->validate();
-
-        // Proceed with your logic, e.g., create a new record
-        // YourModel::create($validated);
-
-        return $request;
+    function update(Request $request,$id) {
+        $request->validate([
+            "name" => ["required",Rule::unique($this->table)->ignore($id)]
+        ]);
+        if(
+            $this->repository->update($id,[
+                "name" => $request->name,
+                "slug" => $request->name,
+            ])
+        ){
+            $this->updatedAlert();
+            return back();
+        }
     }
 }
