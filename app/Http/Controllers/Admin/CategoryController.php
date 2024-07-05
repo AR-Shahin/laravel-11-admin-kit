@@ -55,6 +55,8 @@ class CategoryController extends Controller
         ]);
 
         
+
+        
         if(
             $this->repository->store([
                 "name" => $request->name,
