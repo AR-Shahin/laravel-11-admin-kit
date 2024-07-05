@@ -53,6 +53,8 @@ class CategoryController extends Controller
         $request->validate([
             "name" => ["required","unique:$this->table,name"]
         ]);
+
+        
         if(
             $this->repository->store([
                 "name" => $request->name,
