@@ -19,7 +19,7 @@
              <form action="{{ route("admin.authenticate") }}" method="post">
                 @csrf
                 <div class="input-group mb-3">
-                   <input type="email" class="form-control" placeholder="Email" name="email">
+                   <input type="email" class="form-control" placeholder="Email" name="email" value="admin@mail.com">
 
                    <div class="input-group-append">
                       <div class="input-group-text">
@@ -28,7 +28,7 @@
                    </div>
                 </div>
                 <div class="input-group mb-3">
-                   <input type="password" class="form-control" placeholder="Password" name="password">
+                   <input type="password" class="form-control" placeholder="Password" name="password" value="password">
                    <div class="input-group-append">
                       <div class="input-group-text">
                          <span class="fas fa-lock"></span>
