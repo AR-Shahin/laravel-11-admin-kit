@@ -1,10 +1,12 @@
 <?php
 
+use App\Models\Admin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Auth\Foo;
+use App\Http\Controllers\BackupController;
+
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\Auth\LoginController;
-use App\Models\Admin;
 
 Route::get('/', function () {
     // $admin =  Admin::first();
@@ -26,6 +28,8 @@ require __DIR__.'/admin/auth.php';
 require __DIR__.'/admin/web.php';
 
 Route::view("ars","admin.layouts.app")->name("ars");
+
+Route::get('/backup-download', [BackupController::class, 'downloadBackup'])->name('backup.download');
 
 
 Route::get('bal',[LoginController::class,"create"]);
