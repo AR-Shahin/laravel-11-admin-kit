@@ -29,7 +29,7 @@ require __DIR__.'/admin/web.php';
 
 Route::view("ars","admin.layouts.app")->name("ars");
 
-Route::get('/backup-download', [BackupController::class, 'downloadBackup'])->name('backup.download');
+Route::post('/backup-download', [BackupController::class, 'downloadBackup'])->name('backup.download');
 
 
 Route::get('bal',[LoginController::class,"create"]);

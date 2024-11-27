@@ -14,6 +14,10 @@
             @csrf
             <button class="btn btn-sm btn-info"><i class="fas fa-trash-restore-alt mr-1"></i> Database Backup Only</button>
         </form>
+        <form action="{{ route("backup.download") }}" method="POST" class="d-inline">
+            @csrf
+            <button onclick="return confirm('Are you sure?')" class="btn btn-sm btn-primary"><i class="fas fa-trash-restore-alt mr-1"></i> Database Backup Only</button>
+        </form>
     </div>
 </div>
 
