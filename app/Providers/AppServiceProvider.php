@@ -6,6 +6,8 @@ use App\Models\WebsiteInfo;
 use Illuminate\Support\Facades\View as FacadesView;
 use Illuminate\View\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\DB;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,6 +32,10 @@ class AppServiceProvider extends ServiceProvider
         FacadesView::composer("*",function (View $view) {
             $view->with("website",once(fn() => WebsiteInfo::first()));
         });
+
+        DB::prohibitDestructiveCommands(
+            $this->app->isProduction()
+        );
 
     }
 }
