@@ -15,7 +15,7 @@
 
     <table class="table table-sm">
         @foreach ($admins as $admin)
-            <p>{{ $admin->name }}</p>
+            <p>{{ $admin->name }} - {{ $admin->roles[0]->name }}</p>
         @endforeach
     </table>
 
