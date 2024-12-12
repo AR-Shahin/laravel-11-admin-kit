@@ -37,5 +37,6 @@ Route::get('bal',[LoginController::class,"create"]);
 
 
 Route::get("cache",function(){
-    return "cache";
+    $admins = Admin::all();
+    return view("cache",compact("admins"));
 });
