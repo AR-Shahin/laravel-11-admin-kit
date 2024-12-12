@@ -33,3 +33,9 @@ Route::post('/backup-download', [BackupController::class, 'downloadBackup'])->na
 
 
 Route::get('bal',[LoginController::class,"create"]);
+
+
+
+Route::get("cache",function(){
+    return "cache";
+});
