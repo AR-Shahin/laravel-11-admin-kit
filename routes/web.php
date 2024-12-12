@@ -7,6 +7,7 @@ use App\Http\Controllers\BackupController;
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\Auth\LoginController;
+use Illuminate\Support\Facades\Cache;
 
 Route::get('/', function () {
     // $admin =  Admin::first();
@@ -37,6 +38,8 @@ Route::get('bal',[LoginController::class,"create"]);
 
 
 Route::get("cache",function(){
-    $admins = Admin::all();
+    $admins = Cache::remember('admins.all', 10, function() {
+        return Admin::all(); 
+    });
     return view("cache",compact("admins"));
 });

@@ -9,6 +9,7 @@
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9",
         "opcodesio/log-viewer": "^3.10",
+        "predis/predis": "^2.3",
         "spatie/laravel-backup": "^8.6",
         "spatie/laravel-permission": "^6.4",
         "yajra/laravel-datatables-oracle": "^11.0"
