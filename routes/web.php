@@ -38,8 +38,8 @@ Route::get('bal',[LoginController::class,"create"]);
 
 
 Route::get("cache",function(){
-    $admins = Cache::remember('admins.all', 10, function() {
-        return Admin::all(); 
+    $admins = Cache::remember('admins', 10, function() {
+        return Admin::all();
     });
     return view("cache",compact("admins"));
 });
