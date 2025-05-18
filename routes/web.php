@@ -7,6 +7,7 @@ use App\Http\Controllers\BackupController;
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\Auth\LoginController;
+use Illuminate\Support\Facades\Cache;
 
 Route::get('/', function () {
     // $admin =  Admin::first();
@@ -33,3 +34,12 @@ Route::post('/backup-download', [BackupController::class, 'downloadBackup'])->na
 
 
 Route::get('bal',[LoginController::class,"create"]);
+
+
+
+Route::get("cache",function(){
+    $admins = Cache::remember('admins', 10, function() {
+        return Admin::all();
+    });
+    return view("cache",compact("admins"));
+});

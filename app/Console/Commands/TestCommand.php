@@ -3,16 +3,15 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Log;
 
-class BipCommand extends Command
+class TestCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'bip_command';
+    protected $signature = 'app_test';
 
     /**
      * The console command description.
@@ -26,12 +25,6 @@ class BipCommand extends Command
      */
     public function handle()
     {
-       //  $this->info('Bip command executed successfully!');
-
-        // You can add more functionality here as needed
-        // For example, you could
-      //  dd(3);
-
-        Log::info("Bip command executed successfully!");
+        dd(2);
     }
 }
