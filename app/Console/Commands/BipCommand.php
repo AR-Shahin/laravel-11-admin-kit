@@ -33,5 +33,6 @@ class BipCommand extends Command
       //  dd(3);
 
         Log::info("Bip command executed successfully!");
+        $this->info('Bip command executed successfully!');
     }
 }
