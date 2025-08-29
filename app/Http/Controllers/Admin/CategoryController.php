@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BaseCRUDRequest;
-use App\Repository\BaseCRUDRepository;
+use App\Repositories\BaseCRUDRepository;
 
 class CategoryController extends Controller
 {
@@ -54,9 +54,9 @@ class CategoryController extends Controller
             "name" => ["required","unique:$this->table,name"]
         ]);
 
-        
 
-        
+
+
         if(
             $this->repository->store([
                 "name" => $request->name,
