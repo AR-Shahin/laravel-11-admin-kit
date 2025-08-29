@@ -38,7 +38,7 @@
                 <div class="row">
                    <div class="col-8">
                       <div class="icheck-primary">
-                         <input type="checkbox" id="remember" value="1">
+                         <input type="checkbox" id="remember" value="1" name="remember">
                          <label for="remember">
                          Remember Me
                          </label>
