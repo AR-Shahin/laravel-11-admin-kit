@@ -27,6 +27,6 @@ class TestCommand extends Command
     public function handle()
     {
         Log::info("Test command executed successfully!");
-        dd(2);
+
     }
 }
